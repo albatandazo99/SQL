@@ -57,13 +57,15 @@ INSERT INTO product_price VALUES (1032, 17, 1.69, "oz", 16.00, "USD", 1);
 INSERT INTO product_price VALUES (1033, 17, 3.38, "oz", 29.00, "USD", 4);
 
 --Display the database ordered by price
-SELECT skincare_list.*, product_price.size, product_price.unit_of_measure,product_price.price, product_price.number_sold
+SELECT skincare_list.*, product_price.size, product_price.unit_of_measure, 
+product_price.price, product_price.number_sold
 FROM skincare_list, product_price
 WHERE skincare_list.product_id = product_price.product_id
 ORDER BY price DESC;
 
 --Which 5 products brought in the highest revenue?
-SELECT skincare_list.*, product_price.size, product_price.unit_of_measure,product_price.price, product_price.number_sold, product_price.price*product_price.number_sold AS total_revenue
+SELECT skincare_list.*, product_price.size, product_price.unit_of_measure, product_price.price, 
+product_price.number_sold, product_price.price*product_price.number_sold AS total_revenue
 FROM skincare_list, product_price
 WHERE skincare_list.product_id = product_price.product_id
 ORDER BY total_revenue DESC
