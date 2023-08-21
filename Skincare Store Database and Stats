@@ -1,24 +1,24 @@
---Create a store database
+--Create a store database with two tables
 
-CREATE TABLE skincare (product_id INTEGER PRIMARY KEY, brand TEXT, skincare_type TEXT, product_name TEXT, total_inventory INTEGER);
+CREATE TABLE skincare_list (product_id INTEGER PRIMARY KEY, brand TEXT, category TEXT, product_name TEXT, total_inventory INTEGER);
 
-INSERT INTO skincare VALUES (1, "Kiehls Since 1851", "Treatments", "Micro-Dose Anti-Aging Retinol Serum with Ceramides and Peptides", 7);
-INSERT INTO skincare VALUES (2, "The Ordinary", "Treatments", "Alpha Arbutin 2% + HA Hyperpigmentation Serum", 7);
-INSERT INTO skincare VALUES (3, "The INKEY List", "Treatments", "Succinic Acid Acne Treatment", 7);
-INSERT INTO skincare VALUES (4, "Drunk Elephant", "Moisturizers", "Lala Retro Whipped Refillable Moisturizer with Ceramides", 10);
-INSERT INTO skincare VALUES (5, "Glow Recipe", "Moisturizers", "Watermelon Pink Juice Oil-Free Moisturizer", 10);
-INSERT INTO skincare VALUES (6, "Drunk Elephant", "Face Oil", "Virgin Marula Luxury Face Oil",20);
-INSERT INTO skincare VALUES (7, "Kiehls Since 1851", "Face Oil", "Midnight Recovery Concentrate Moisturizing Face Oil", 25);
-INSERT INTO skincare VALUES (8, "The Ordinary", "Face Oil", "B Oil", 10);
-INSERT INTO skincare VALUES (9, "Youth To The People", "Cleanser", "Superfood Antioxidant Refillable Cleanser", 15);
-INSERT INTO skincare VALUES (10, "Glow Recipe", "Cleanser", "Berry Bounce Gentle Cleanser", 10);
-INSERT INTO skincare VALUES (11, "Tatcha", "Cleanser", "The Rice Wash Skin-Softening Cleanser",15);
-INSERT INTO skincare VALUES (12, "Fresh", "Cleanser", "Soy Hydrating Gentle Face Cleanser", 8);
-INSERT INTO skincare VALUES (13, "Glow Recipe", "Eye cream", "Guava Vitamin C Bright-Eye Gel Cream", 15);
-INSERT INTO skincare VALUES (14, "The INKEY List", "Eye cream", "Caffeine De-pufing + Dark Circle Eye Cream", 7);
-INSERT INTO skincare VALUES (15, "Supergoop!", "Sunscreen", "Glowscreen SPF 40 Sunscreen with Hyaluronic Acid + Niacinamide",30);
-INSERT INTO skincare VALUES (16, "Glow Recipe", "Sunscreen", "Watermelon Glow Niacinamide Sunscreen SPF 50",15);
-INSERT INTO skincare VALUES (17, "innisfree", "Sunscreen", "Daily UV Defense Invisible Broad Spectrum SPF 36 Sunscreen", 7);
+INSERT INTO skincare_list VALUES (1, "Kiehls Since 1851", "Treatments", "Micro-Dose Anti-Aging Retinol Serum with Ceramides and Peptides", 7);
+INSERT INTO skincare_list VALUES (2, "The Ordinary", "Treatments", "Alpha Arbutin 2% + HA Hyperpigmentation Serum", 7);
+INSERT INTO skincare_list VALUES (3, "The INKEY List", "Treatments", "Succinic Acid Acne Treatment", 7);
+INSERT INTO skincare_list VALUES (4, "Drunk Elephant", "Moisturizers", "Lala Retro Whipped Refillable Moisturizer with Ceramides", 10);
+INSERT INTO skincare_list VALUES (5, "Glow Recipe", "Moisturizers", "Watermelon Pink Juice Oil-Free Moisturizer", 10);
+INSERT INTO skincare_list VALUES (6, "Drunk Elephant", "Face Oil", "Virgin Marula Luxury Face Oil",20);
+INSERT INTO skincare_list VALUES (7, "Kiehls Since 1851", "Face Oil", "Midnight Recovery Concentrate Moisturizing Face Oil", 25);
+INSERT INTO skincare_list VALUES (8, "The Ordinary", "Face Oil", "B Oil", 10);
+INSERT INTO skincare_list VALUES (9, "Youth To The People", "Cleanser", "Superfood Antioxidant Refillable Cleanser", 15);
+INSERT INTO skincare_list VALUES (10, "Glow Recipe", "Cleanser", "Berry Bounce Gentle Cleanser", 10);
+INSERT INTO skincare_list VALUES (11, "Tatcha", "Cleanser", "The Rice Wash Skin-Softening Cleanser",15);
+INSERT INTO skincare_list VALUES (12, "Fresh", "Cleanser", "Soy Hydrating Gentle Face Cleanser", 8);
+INSERT INTO skincare_list VALUES (13, "Glow Recipe", "Eye cream", "Guava Vitamin C Bright-Eye Gel Cream", 15);
+INSERT INTO skincare_list VALUES (14, "The INKEY List", "Eye cream", "Caffeine De-puffing + Dark Circle Eye Cream", 7);
+INSERT INTO skincare_list VALUES (15, "Supergoop!", "Sunscreen", "Glowscreen SPF 40 Sunscreen with Hyaluronic Acid + Niacinamide",30);
+INSERT INTO skincare_list VALUES (16, "Glow Recipe", "Sunscreen", "Watermelon Glow Niacinamide Sunscreen SPF 50",15);
+INSERT INTO skincare_list VALUES (17, "Innisfree", "Sunscreen", "Daily UV Defense Invisible Broad Spectrum SPF 36 Sunscreen", 7);
 
 CREATE TABLE product_price (product_SKU INTEGER PRIMARY KEY,product_id INTEGER, size INTEGER, unit_of_measure TEXT, price INTEGER, currency_type TEXT, number_sold INTEGER);
 
@@ -56,15 +56,8 @@ INSERT INTO product_price VALUES (1031, 16, 1.7, "oz", 35.00, "USD", 8);
 INSERT INTO product_price VALUES (1032, 17, 1.69, "oz", 16.00, "USD", 1);
 INSERT INTO product_price VALUES (1033, 17, 3.38, "oz", 29.00, "USD", 4);
 
---display the database ordered by price.
-SELECT * FROM product_price
+--display the database ordered by price
+SELECT skincare_list.*, product_price.size, product_price.unit_of_measure,product_price.price, product_price.number_sold
+FROM skincare_list, product_price
+WHERE skincare_list.product_id = product_price.product_id
 ORDER BY price DESC;
-
-
-SELECT SUM(number_sold*price) AS total_revenue
-FROM product_price;
-
-SELECT product_SKU, product_ID,(number_sold*price) AS total_revenue
-FROM product_price
-ORDER BY total_revenue DESC
-LIMIT 5;
