@@ -25,7 +25,7 @@ ORDER BY price DESC;
 --What is the average price of shoes in the Hiking category?
 SELECT AVG(price) AS Avg_Hiking_Shoes_Price
 FROM shoe_store
-WHERE category = 'hiking';
+WHERE category = "hiking";
 
 --What are the top 7 popular brands?
 SELECT brand, price, popularity
