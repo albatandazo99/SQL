@@ -1,0 +1,34 @@
+--Create a store database
+
+CREATE TABLE shoe_store (product_id INTEGER PRIMARY KEY, brand TEXT, category TEXT, product_name TEXT, price INTEGER, popularity INTEGER);
+
+INSERT INTO shoe_store VALUES (1, "Nike", "running", "InfinityRN 4", 160.00, 35);
+INSERT INTO shoe_store VALUES (2, "Nike", "sneakers", "Nike Court Legacy Lift", 90.00, 40);
+INSERT INTO shoe_store VALUES (3, "Adidas", "sandals", "Adilette Slides", 40.00, 7);
+INSERT INTO shoe_store VALUES (4, "Adidas", "sneakers", "Humanrace Samba Shoes", 200.00, 23);
+INSERT INTO shoe_store VALUES (5, "NoBull", "golf", "Women's Leather Golf Shoe", 179.00, 15);
+INSERT INTO shoe_store VALUES (6, "NoBull", "running", "Women's Knit Runner", 159.00, 25);
+INSERT INTO shoe_store VALUES (7, "Hoka", "hiking", "Stinson 7", 170.00, 49);
+INSERT INTO shoe_store VALUES (8, "Hoka", "running", "Bondi 8", 165.00, 32);
+INSERT INTO shoe_store VALUES (9, "On Running", "hiking", "Cloudwander Waterproof", 179.99, 55);
+INSERT INTO shoe_store VALUES (10, "On Running", "running", "Cloudventure", 149.99, 38);
+INSERT INTO shoe_store VALUES (11, "Brooks", "hiking", "Cascadia 17", 140.00, 67);
+INSERT INTO shoe_store VALUES (12, "Brooks", "running", "Glycerin 20", 160.00, 70);
+INSERT INTO shoe_store VALUES (13, "Xero Shoes", "running", "HFS", 119.99, 26);
+INSERT INTO shoe_store VALUES (14, "Xero Shoes", "sandals", "Z-Trail EV", 79.99, 37);
+INSERT INTO shoe_store VALUES (15, "Vivobarefoot", "hiking", "Magna Forest ESC", 235.00, 73);
+
+--Display the database by price.
+SELECT * FROM shoe_store
+ORDER BY price DESC;
+
+--What is the average price of shoes in the Hiking category?
+SELECT AVG(price) AS Avg_Hiking_Shoes_Price
+FROM shoe_store
+WHERE category = 'hiking';
+
+--What are the top 7 popular brands?
+SELECT brand, price, popularity
+FROM shoe_store
+ORDER BY popularity DESC
+LIMIT 7;
