@@ -67,10 +67,8 @@ SELECT max(intelligence), max(strength), max(speed), max(durability), max(energy
 FROM marvels;
 
 --what about those numbers per category in the data (using HAVING)?
-  #I found that the average skills stats were 4 across the columns, and the max was 7.
-  #The sum of average skill stats across ALL columns is 24. 
-  #I used the HAVING sql query to find which marvel characters fighting skills were greater than or equal to 24. 
-  #This shows me the marvel characters with the highest fighting skill stats. 
+  #I found that the average skills stats were 4 across the columns, and the max was 7. The sum of average skill stats across ALL columns is 24. 
+  #To find which characters have the highest fighting stats. I used the HAVING sql query to find whose fighting skills were greater than or equal to 24.  
 SELECT name, popularity,sum(intelligence+strength+speed+durability+energy_Projection+fighting_skills) as fighting_stats
 FROM marvels
 GROUP BY name
