@@ -66,13 +66,8 @@ FROM marvels;
 SELECT max(intelligence), max(strength), max(speed), max(durability), max(energy_Projection), max(fighting_skills)
 FROM marvels;
 
---what are the min values in the data?
-  #I found the smallest number for the columns to see which number would be considered as the weakest. 
-SELECT min(intelligence), min(strength), min(speed), min(durability), min(energy_Projection), min(fighting_skills)
-FROM marvels;
-
 --what about those numbers per category in the data (using HAVING)?
-  #I found that the average skills stats were 4 across the columns, the max was 7, and the minimum was 1 and 2.
+  #I found that the average skills stats were 4 across the columns, and the max was 7.
   #The sum of average skill stats across ALL columns is 24. 
   #I used the HAVING sql query to find which marvel characters fighting skills were greater than or equal to 24. 
   #This shows me the marvel characters with the highest fighting skill stats. 
