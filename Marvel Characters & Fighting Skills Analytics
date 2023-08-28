@@ -87,5 +87,6 @@ GROUP BY speed_zone;
 
 --what interesting ways are there to filter the data (using AND/OR)?
   # I used the logical operator, AND, to find which marvels characters were the strongest and had above average durability. 
-SELECT id, name, strength, durability FROM marvels
+SELECT id, name, strength, durability 
+FROM marvels
 WHERE strength =7 AND durability > 4;
